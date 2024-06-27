@@ -2,10 +2,11 @@ extends CharacterBody2D
 class_name BasicEnemy
 
 const MAX_SPEED:int = 75
+@onready var area_2d = $Area2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	area_2d.area_entered.connect(on_area_entered)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -19,3 +20,5 @@ func get_direction_to_player():
 		return (player_node.global_position - global_position).normalized() # we get the position of the player minus our position and normalize it to get a vector we can use
 	return Vector2.ZERO
 
+func on_area_entered(other_area:Area2D):
+	queue_free()
