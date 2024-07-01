@@ -3,6 +3,7 @@ class_name BasicEnemy
 
 const MAX_SPEED:int = 50
 @onready var area_2d = $Area2D
+@onready var health_component = $HealthComponent
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,4 +22,4 @@ func get_direction_to_player():
 	return Vector2.ZERO
 
 func on_area_entered(_other_area:Area2D):
-	queue_free()
+	health_component.damage(100)
