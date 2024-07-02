@@ -2,6 +2,7 @@ extends Node
 class_name sword_ability_controller
 
 @export var sword_ability:PackedScene
+var damage = 5
 
 @onready var timer = $Timer
 const MAX_RANGE:int = 150
@@ -30,8 +31,10 @@ func on_timer_timeout():
 		return a_distance < b_distance
 	)
 	
-	var sword_instance = sword_ability.instantiate() as Node2D
+	var sword_instance = sword_ability.instantiate() as SwordAbility
 	player.get_parent().add_child(sword_instance)
+	sword_instance.hitbox_component.damage = damage
+	
 	sword_instance.global_position = enemies[0].global_position
 	sword_instance.global_position += Vector2.RIGHT.rotated(randf_range(0, TAU)) * 4
 	
