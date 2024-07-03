@@ -54,7 +54,6 @@ value = 0.5
 show_percentage = false
 
 [node name="PickupArea2D" type="Area2D" parent="."]
-visible = false
 position = Vector2(0, -5)
 collision_layer = 16
 collision_mask = 0
@@ -64,7 +63,6 @@ shape = SubResource("CircleShape2D_ea2h8")
 debug_color = Color(0.332652, 0.616594, 0.256513, 0.42)
 
 [node name="CollisionArea2D" type="Area2D" parent="."]
-visible = false
 position = Vector2(0, -7)
 collision_layer = 0
 collision_mask = 8
