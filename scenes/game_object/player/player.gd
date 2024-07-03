@@ -11,11 +11,14 @@ var number_colliding_bodies:int = 0
 @onready var collision_area_2d = $CollisionArea2D
 @onready var health_component = $HealthComponent
 @onready var damage_interval_timer = $DamageIntervalTimer
+@onready var health_bar = $HealthBar
 
 func _ready():
 	collision_area_2d.body_entered.connect(on_body_entered)
 	collision_area_2d.body_exited.connect(on_body_exited)
 	damage_interval_timer.timeout.connect(on_damage_interval_timer_timeout)
+	health_component.health_changed.connect(on_health_changed)
+	on_health_changed()
 
 
 func _process(delta):
@@ -51,3 +54,6 @@ func on_body_exited(other_body:Node2D):
 
 func on_damage_interval_timer_timeout():
 	check_deal_damage()
+
+func on_health_changed():
+	health_bar.value = health_component.get_health_percent()
